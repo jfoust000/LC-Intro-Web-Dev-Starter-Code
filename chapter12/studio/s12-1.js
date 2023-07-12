@@ -2,11 +2,53 @@
 
 // Code your selectRandomEntry function here:
 
+function selectRandomEntry(entry) {
+  return entry[Math.floor(Math.random() * entry.length)];
+}
+
+function getThreeRandomIDNumbers() {
+
+let newArray = [];
+
+let idNumbers = [291, 414, 503, 599, 796, 890];
+
+
+for (let i = 0; i < 3; i++) {
+
+  let selection = selectRandomEntry(idNumbers);
+
+  while (newArray.includes(selection)) {
+      selection = selectRandomEntry(idNumbers);
+  }
+  
+    newArray.push(selection);
+    
+}
+return newArray;
+}
+
+
 
 // Code your buildCrewArray function here:
 
+function buildCrewArray(randomIDNumbers, candidates) {
+ 
+    let winners = [];
 
-let idNumbers = [291, 414, 503, 599, 796, 890];
+    for (let i = 0; i < candidates.length; i++) {  
+       
+      for (let j = 0; j < 3; j++) {
+
+        if (candidates[i].astronautID === randomIDNumbers[j]) { 
+            winners.push(candidates[i].name);
+        } 
+        
+      }
+      
+}
+return winners;
+}
+
 
 // Here are the candidates and the 'animals' array:
 let candidateA = {
@@ -55,3 +97,6 @@ let candidateF = {
 let animals = [candidateA,candidateB,candidateC,candidateD,candidateE,candidateF];
 
 // Code your template literal and console.log statements:
+let selectCandidateWinners = buildCrewArray(getThreeRandomIDNumbers(), animals);
+
+console.log(selectCandidateWinners[0] + '\, ' + selectCandidateWinners[1]+', ' + "and " + selectCandidateWinners[2] + "are going to space!");
