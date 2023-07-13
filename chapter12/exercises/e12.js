@@ -69,29 +69,32 @@ function crewReports(animal) {
 
 function fitnessTest(crew) {
 
-    let firstPlace = '';
-    
+    let n = 0;
+    let sortedFinalSteps = [];
+    let winner = '';
 
-    for (let i = 0; i < crew.length; i++) {
+    while (crew[n].steps < 20) { 
 
-        crew[i].steps = crew[i].move();
-        console.log(crew[i].steps);
-     }
-     
-     let j = 0;
+        for (let i = 0; i < crew.length; i++) {
 
-     while (crew[j].steps < 20) {
-
-        crew[j].steps += crew[j].move();
-        j++;
-     }
-    //     firstPlaceSteps[j] = crew[j].steps;
-    //  }
-    //  firstPlace = crew[j].name;
-    //  console.log(crew);
-    //  return firstPlace;
-    return crew[j].name;
+            crew[i].steps += crew[i].move();
+        
+        }
     }
+    for (let i = 0; i < crew.length; i++) {
+        sortedFinalSteps.push(crew[i].steps);
+    }
+    sortedFinalSteps.sort(function(a, b) {
+            return a - b;
+        });
+    for (let i = 0; i < crew.length; i++) {
+        if (crew[i].steps === sortedFinalSteps[sortedFinalSteps.length - 1]) {   
+            winner = crew[i].name;
+        }
+    }
+    console.log(crew);
+    return  `${winner} is the winner of the race with ${sortedFinalSteps[sortedFinalSteps.length - 1]} steps!\n}`;
+}
     
   
 
