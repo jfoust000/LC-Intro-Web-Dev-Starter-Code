@@ -2,6 +2,7 @@
 class Book {
 
     constructor(title, author, copyrightDate, isbn, numOfPages, numTimesCheckedOut, disgarded) {
+
         this.title = title;
         this.author = author;
         this.copyrightDate = copyrightDate;
@@ -10,19 +11,24 @@ class Book {
         this.numTimesCheckedOut = numTimesCheckedOut;
         this.disgarded = disgarded;
 
+        }
+
+        disgardBook() { 
+            
+            this.disgarded = "Yes"; 
         
-    }
+        }
 
-    disgardBook() {
-
-    }
 }
 
 // Define your Manual and Novel classes here:
 class Manual extends Book {
 
-    constructor(title, author, copyrightDate, isbn, numOfPages, numTimesCheckedOut, disgarded) {
+    constructor(title, author, copyrightDate, isbn, numOfPages, numTimesCheckedOut, disgarded) 
+    {
+
         super(title, author, copyrightDate, isbn, numOfPages, numTimesCheckedOut, disgarded);
+
     }
 
     disgardBook() {
@@ -32,7 +38,7 @@ class Manual extends Book {
         
         if (this.copyrightDate <= (currentYear - 5)) {
 
-            this.disgarded = "Yes";
+            super.disgardBook();
 
         } else {
 
@@ -44,15 +50,18 @@ class Manual extends Book {
 
 class Novel extends Book {
 
-    constructor(title, author, copyrightDate, isbn, numOfPages, numTimesCheckedOut, disgarded) {
+    constructor(title, author, copyrightDate, isbn, numOfPages, numTimesCheckedOut, disgarded) 
+    {
+
         super(title, author, copyrightDate, isbn, numOfPages, numTimesCheckedOut, disgarded);
+
     }
 
     disgardBook() {
 
         if (this.numTimesCheckedOut > 100) {
 
-            this.disgarded = "Yes";
+            super.disgardBook();
 
         } else {
 
@@ -60,9 +69,9 @@ class Novel extends Book {
         }
     }
 
-    checkOut(count) {
+    checkOut() {
 
-        this.numTimesCheckedOut += count;
+        this.numTimesCheckedOut += 1;
         
     }
 
@@ -75,13 +84,21 @@ let newNovel = new Novel("Pride and Prejudice", "Jane Austen", 1813, "1111111111
 let newManual = new Manual("Top Secret Shuttle Building Manual", "Redacted", 2013, "0000000000000", 1147, 1, "No");
 
 // Code exercises 4 & 5 here:
-console.log(`\nTitle:\n\n${newManual.title}\n\nDisgarded:\n\n${newManual.disgarded}`);
-console.log(`\nTitle:\n\n${newManual.title}\n\nCopyright Date:\n\n${newManual.copyrightDate}`);
 newManual.disgardBook();
-console.log(`\nTitle:\n\n${newManual.title}\n\nDisgarded:\n\n${newManual.disgarded}`);
+console.log(`\nTitle: ${newManual.title}\n\nCopyright Date: ${newManual.copyrightDate}\n\nDisgarded: ${newManual.disgarded}`);
 
-console.log(`\n\nThe Novel:\n\n${newNovel.title} has been checked out ${newNovel.numTimesCheckedOut} times.`);
-newNovel.checkOut(5);
-console.log(`\n\nThe Novel:\n\n${newNovel.title} has been checked out 5 more times.`);
-console.log(`\n\nThe Novel:\n\n${newNovel.title} has been checked out ${newNovel.numTimesCheckedOut} times.`);
+
+
+console.log(`\n\nThe Novel:\n\n${newNovel.title} was checked out ${newNovel.numTimesCheckedOut} times.`);
+
+let checkoutCounter = 5;
+
+for (let i = 0; i < checkoutCounter; i++) {
+
+    newNovel.checkOut();
+
+}
+
+console.log(`\n\nThe Novel:\n\n${newNovel.title} has been checked out ${checkoutCounter} additonal times.`);
+console.log(`\n\nNow, ${newNovel.title} has been checked out ${newNovel.numTimesCheckedOut} times.\n\n`);
 
