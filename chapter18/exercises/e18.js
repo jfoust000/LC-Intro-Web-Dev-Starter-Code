@@ -32,11 +32,11 @@ class Manual extends Book {
         
         if (this.copyrightDate <= (currentYear - 5)) {
 
-            this.disgarded = true;
+            this.disgarded = "Yes";
 
         } else {
 
-            this.disgarded = false;
+            this.disgarded = "No";
         }
     }
 
@@ -52,25 +52,36 @@ class Novel extends Book {
 
         if (this.numTimesCheckedOut > 100) {
 
-            this.disgarded = true;
+            this.disgarded = "Yes";
 
         } else {
 
-            this.disgarded = false;
+            this.disgarded = "No";
         }
+    }
+
+    checkOut(count) {
+
+        this.numTimesCheckedOut += count;
+        
     }
 
 }
 
 // Declare the objects for exercises 2 and 3 here:
 
-let newNovel = new Novel("Pride and Prejudice", "Jane Austen", 1813, "1111111111111", 432, 32, false);
+let newNovel = new Novel("Pride and Prejudice", "Jane Austen", 1813, "1111111111111", 432, 32, "No");
 
-let newManual = new Manual("Top Secret Shuttle Building Manual", "Redacted", 2013, "0000000000000", 1147, 1, false);
+let newManual = new Manual("Top Secret Shuttle Building Manual", "Redacted", 2013, "0000000000000", 1147, 1, "No");
 
 // Code exercises 4 & 5 here:
-console.log(newManual.disgarded);
-console.log(newManual.copyrightDate);
+console.log(`\nTitle:\n\n${newManual.title}\n\nDisgarded:\n\n${newManual.disgarded}`);
+console.log(`\nTitle:\n\n${newManual.title}\n\nCopyright Date:\n\n${newManual.copyrightDate}`);
 newManual.disgardBook();
-console.log(newManual.disgarded);
+console.log(`\nTitle:\n\n${newManual.title}\n\nDisgarded:\n\n${newManual.disgarded}`);
+
+console.log(`\n\nThe Novel:\n\n${newNovel.title} has been checked out ${newNovel.numTimesCheckedOut} times.`);
+newNovel.checkOut(5);
+console.log(`\n\nThe Novel:\n\n${newNovel.title} has been checked out 5 more times.`);
+console.log(`\n\nThe Novel:\n\n${newNovel.title} has been checked out ${newNovel.numTimesCheckedOut} times.`);
 
