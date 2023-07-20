@@ -96,3 +96,13 @@ while (gladGator.average() < 80) {
 console.log(`\n\n${gladGator.name} took ${counter} more tests, and now has an average score of: `);
 console.log(`${gladGator.average()} (up from ${previousAverage})`);
 console.log(`And a status of ${gladGator.status()}`);
+counter = 0;
+previousAverage = gladGator.average();
+while (gladGator.average() < 90) {
+
+    gladGator.addScore(100);
+    counter++;
+}
+console.log(`\n\n${gladGator.name} took ${counter} more tests, and now has an average score of: `);
+console.log(`${gladGator.average()} (up from ${previousAverage})`);
+console.log(`And a status of ${gladGator.status()}`);
